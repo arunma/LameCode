@@ -13,7 +13,7 @@
 
 
 
-public class InfixToPostfix {
+public class InfixToValue {
 
 
     public static final String OPERATORS="+-/*)"    //ignore the "(" as an operator
@@ -21,8 +21,8 @@ public class InfixToPostfix {
 
     public static void main(String[] args) {
 
-        String inputExpression="(9-5)+5*0+3" //610
-        InfixToPostfix ifixToPfix=new InfixToPostfix()
+        String inputExpression="9 - 5+5*0+3" //610
+        InfixToValue ifixToPfix=new InfixToValue()
         ifixToPfix.infixToValue(inputExpression);
     }
 
@@ -38,7 +38,11 @@ public class InfixToPostfix {
             totalCharInInput--
 
             println ("each char : "+eachChar)
-            if (isValidOperator(eachChar)){
+
+            if (eachChar.trim()==""){
+                 //ignore
+            }
+            else if (isValidOperator(eachChar)){
 
 
                 valueStack.push(Long.parseLong(eachNumber)) //push the till now accumulated number to the value stack
