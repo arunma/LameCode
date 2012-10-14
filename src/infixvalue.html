@@ -1,0 +1,223 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Infix Expression Evaluator</title>
+
+    <script>
+
+        var OPERATORS=['+','-','/','*'];    //ignore the "(" as an operator
+        var OPERATOR_LEVELS={"*":1, "/":1, "+":2,"-":2};
+
+
+        function infixToValue(inputExpression){
+
+            //cleanup previous run's data
+            document.getElementById("solution").value="";
+            document.getElementById("inter").value="";
+            document.getElementById("exprStack").value="";
+            document.getElementById("valuStack").value="";
+
+            var expressionStack=new Array();
+            var valueStack=new Array();
+
+            var eachNumber="";
+
+            for (var i=0; i<inputExpression.length;i++){
+
+                var eachChar=inputExpression[i];
+
+                if (trim(eachChar)==""){
+                    continue;
+                }
+
+                if (isValidOperator(eachChar)){
+
+
+                    valueStack.push(parseInt(eachNumber)); //push the till now accumulated number to the value stack
+                    writeValueStack(valueStack);
+                    eachNumber="";
+
+
+                    if (expressionStack.length==0){   //first item and not left parentheses
+                        expressionStack.push(eachChar);
+                        writeExpressionStack(expressionStack);
+                    }
+                    //if the current operator has higher precedence than the first item in the stack, then it is fine.
+                    //Just insert the incoming
+                    else if (getHigherPrecedenceOperator(eachChar, expressionStack[expressionStack.length-1])==eachChar){
+                        expressionStack.push(eachChar);
+                        writeExpressionStack(expressionStack);
+                    }
+
+                    //if the current operator is lesser, then the previous higher precedence expression have to be
+                    //evaluated. Else, we would be making wrong calculations while popping off for final evaluation
+                    else{
+
+                        //the current operator has higher precedence. Evaluate expression
+                        evaluateAndPushValueToValueStack(valueStack, expressionStack);
+                        writeValueStack(valueStack);
+                        //after evaluation of the higher pair, don't forget to insert the current character into the expression stack
+                        expressionStack.push(eachChar);
+                        writeExpressionStack(expressionStack);
+
+                    }
+
+
+
+                }
+                else if (isNumber(eachChar)){
+
+                    eachNumber+=eachChar;
+                    if (i==inputExpression.length-1){
+                        valueStack.push(parseInt(eachNumber)); //the last element
+                        writeValueStack(valueStack);
+                    }
+                }
+
+            }
+
+            var expStackLength=expressionStack.length;
+            for (var i=0; i<expStackLength;i++){
+                evaluateAndPushValueToValueStack(valueStack,expressionStack);
+            }
+            document.getElementById("solution").value=valueStack.pop();
+        }
+
+
+
+        function isNumber(n) {
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
+
+
+        function evaluateAndPushValueToValueStack(valueStack, expressionStack) {
+
+            var firstOperand=valueStack.pop() ;
+            var secondOperand=valueStack.pop() ;
+            var operator=expressionStack.pop() ;
+            var evaluatedValue = evaluate(secondOperand, firstOperand, operator);  //intermediate result
+            valueStack.push(evaluatedValue);
+            writeIntermediateResults(firstOperand, secondOperand, operator, evaluatedValue);
+
+        }
+
+        function evaluate (firstOperand, secondOperand, operator) {
+
+            var returnValue;
+
+            switch (operator) {
+                case "+" :
+                    returnValue=firstOperand+secondOperand ;
+                    break
+                case "-" :
+                    returnValue=firstOperand-secondOperand ;
+                    break;
+                case "*":
+                    returnValue=firstOperand*secondOperand ;
+                    break
+                case "/":
+
+                    if (secondOperand==0){      //cheating death by zero
+                        returnValue=0;
+                    }
+                    else{
+                        returnValue=firstOperand/secondOperand ;
+                    }
+                    break;
+
+            }
+
+            return returnValue;
+
+
+        }
+
+        function writeIntermediateResults(firstOperand, secondOperand, operator, evaluatedValue){
+            var textArea=document.getElementById("inter");
+            textArea.value="\n"+textArea.value+secondOperand+operator+firstOperand+'='+evaluatedValue+"\n";
+            //alert (textAreaValue);
+            document.getElementById("inter").value=textArea.value;
+        }
+
+        function isValidOperator(input) {
+
+            if (contains(OPERATORS,input)){
+                return true;
+            }
+
+            return false;
+
+        }
+
+        function getHigherPrecedenceOperator(firstOperator, secondOperator){
+
+            return OPERATOR_LEVELS[firstOperator]<OPERATOR_LEVELS[secondOperator]?firstOperator:secondOperator ;
+
+        }
+
+
+
+        function writeExpressionStack(expressionStack){
+            var expreStack=document.getElementById("exprStack");
+            expreStack.value=expreStack.value+expressionStack +"\n";
+        }
+
+        function writeValueStack(valueStack){
+            var valooStack=document.getElementById("valuStack");
+            valooStack.value=valooStack.value+valueStack+"\n";
+        }
+
+        //The following methods are shamelessly stolen from stackoverflow. It's 12 in the night and I am too lazy. Sorry
+        //http://stackoverflow.com/questions/498970/how-do-i-trim-a-string-in-javascript
+        function trim(str) {
+            return str.replace(/^\s+|\s+$/g,"");
+        }
+
+        function contains(arrayToSearch, itemToBeSearched) {
+            var i = arrayToSearch.length;
+            while (i--) {
+                if (arrayToSearch[i] === itemToBeSearched) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+    </script>
+</head>
+<body>
+
+    Enter expression : <input type="text" size="100" id="inputText" style="width:300px; height:40px; font-size:18px;" value="9-5+5*0+3"/>
+    <input type="button" value="Evaluate" onclick="infixToValue(document.getElementById('inputText').value)"/>
+
+    <br/>
+    <br/>
+    Answer : <input type="text" id="solution" disabled="disabled" style="width:300px; height:40px; font-size:18px;color: green;" />
+
+
+    <br/>
+    <br/>
+    Intermediate calculations :
+    <br/>
+    <br/>
+    <textarea id="inter" rows="10" cols="50" disabled=disabled style="border: 0"></textarea>
+    <br/>
+    <br/>
+
+    <table>
+        <tr>
+            <td align="center">Value Stack</td>
+            <td align="center">Expression Stack</td>
+        </tr>
+        <tr>
+            <td>
+                <textarea id="valuStack" rows="10" cols="50" disabled=disabled style="border: 0"></textarea>
+            </td>
+            <td>
+                <textarea id="exprStack" rows="10" cols="50" disabled=disabled style="border: 0"></textarea>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
