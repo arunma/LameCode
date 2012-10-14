@@ -5,7 +5,8 @@
  * This program is not an infix to postfix converter.  However, this program does the following
  *
  * 1) Evaluates a non-parenthesized infix expression and drives it to a final value
- * 2) Supports brackets
+ * 2) Does not support parentheses
+ * 3) Supports multiple digits as operands
  *
  * @author Arun Manivannan
  */
@@ -112,6 +113,7 @@ public class InfixToPostfix {
         operator=="("?true:false
     }
 
+
     private void evaluateAndPushValueToValueStack(Stack<Long> valueStack, Stack<String> expressionStack) {
 
         Long firstOperand=valueStack.pop()
@@ -120,6 +122,7 @@ public class InfixToPostfix {
         Long evaluatedValue = this.evaluate(secondOperand, firstOperand, expressionStack.pop())  //intermediate result
         valueStack.push(evaluatedValue)
     }
+
 
     Long evaluate(Long firstOperand, Long secondOperand, String operator) {
         Long returnValue

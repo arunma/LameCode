@@ -61,7 +61,7 @@
       <file leaf-file-name="InfixToPostfix.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/InfixToPostfix.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="13" selection-start="383" selection-end="383" vertical-scroll-proportion="0.0">
+            <state line="125" column="4" selection-start="4276" selection-end="4276" vertical-scroll-proportion="0.4406365">
               <folding />
             </state>
           </provider>
@@ -73,6 +73,13 @@
     <FindUsagesManager>
       <setting name="OPEN_NEW_TAB" value="false" />
     </FindUsagesManager>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="changedFiles">
+      <list>
+        <option value="$PROJECT_DIR$/src/InfixToPostfix.groovy" />
+      </list>
+    </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="146" />
@@ -390,7 +397,7 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/InfixToPostfix.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="383" selection-end="383" vertical-scroll-proportion="0.0">
+        <state line="125" column="4" selection-start="4276" selection-end="4276" vertical-scroll-proportion="0.4406365">
           <folding />
         </state>
       </provider>
