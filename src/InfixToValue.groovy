@@ -7,6 +7,10 @@
  * 1) Evaluates a non-parenthesized infix expression and drives it to a final value
  * 2) Does not support parentheses
  * 3) Supports multiple digits as operands
+ * 4) Empty space allowed
+ * 5) Floating point numbers not supported
+ * 6) Supports only the 4 basic arithmetic operators but could easily be extended to support any other
+ *    binary operation
  *
  * @author Arun Manivannan
  */

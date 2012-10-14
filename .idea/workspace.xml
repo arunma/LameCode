@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4f4a832-6f8c-45b6-b65f-8eb467318324" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/InfixToPostfix.groovy" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/InfixToValue.groovy" afterPath="$PROJECT_DIR$/src/InfixToValue.groovy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/infixvalue.html" afterPath="$PROJECT_DIR$/src/infixvalue.html" />
     </list>
     <ignored path="LameCode.iws" />
@@ -63,19 +61,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="InfixToValue.groovy" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="InfixToValue.groovy" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/InfixToValue.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="42" column="66" selection-start="1377" selection-end="1377" vertical-scroll-proportion="0.0">
+            <state line="26" column="61" selection-start="852" selection-end="852" vertical-scroll-proportion="0.7235622">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="infixvalue.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="infixvalue.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infixvalue.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="190" column="65" selection-start="6520" selection-end="6520" vertical-scroll-proportion="0.32868525">
+            <state line="194" column="51" selection-start="6600" selection-end="6600" vertical-scroll-proportion="7.2916665">
               <folding />
             </state>
           </provider>
@@ -95,8 +93,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/src/InfixToPostfix.groovy" />
-        <option value="$PROJECT_DIR$/src/InfixToValue.groovy" />
         <option value="$PROJECT_DIR$/src/infixvalue.html" />
+        <option value="$PROJECT_DIR$/src/InfixToValue.groovy" />
       </list>
     </option>
   </component>
@@ -440,16 +438,16 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/InfixToValue.groovy">
+    <entry file="file://$PROJECT_DIR$/src/infixvalue.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="66" selection-start="1377" selection-end="1377" vertical-scroll-proportion="0.0">
+        <state line="194" column="51" selection-start="6600" selection-end="6600" vertical-scroll-proportion="7.2916665">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infixvalue.html">
+    <entry file="file://$PROJECT_DIR$/src/InfixToValue.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="190" column="65" selection-start="6520" selection-end="6520" vertical-scroll-proportion="0.32868525">
+        <state line="26" column="61" selection-start="852" selection-end="852" vertical-scroll-proportion="0.7235622">
           <folding />
         </state>
       </provider>

@@ -188,7 +188,17 @@
 </head>
 <body>
 
-    Enter expression (parenthesis not supported. spaces allowed) : <input type="text" size="100" id="inputText" style="width:300px; height:40px; font-size:18px;" value="9-5+5*0+3"/>
+    <h3>Infix expression evaluator </h3>
+    <h4>Note : </h4>
+    <ol>
+        <li>Parenthesis not supported</li>
+        <li>Spaces allowed</li>
+        <li>Floating numbers not supported</li>
+        <li>Supports only the 4 basic arithmetic operators (+-*/)</li>
+        <li>Please visit <a href="http://rerun.me/blog/2012/10/14/evaluating-infix-expression-in-groovy-more-than-a-digit">rerun.me</a> for the writeup</li>
+
+    </ol>
+    Enter expression : <input type="text" size="100" id="inputText" style="width:300px; height:40px; font-size:18px;" value="9-5+5*0+3"/>
     <input type="button" value="Evaluate" onclick="infixToValue(document.getElementById('inputText').value)"/>
 
     <br/>
@@ -201,7 +211,7 @@
     Intermediate calculations :
     <br/>
     <br/>
-    <textarea id="inter" rows="10" cols="50" disabled=disabled style="border: 0"></textarea>
+    <textarea id="inter" rows="10" cols="50" disabled=disabled style="border: 1"></textarea>
     <br/>
     <br/>
 
@@ -212,12 +222,14 @@
         </tr>
         <tr>
             <td>
-                <textarea id="valuStack" rows="10" cols="50" disabled=disabled style="border: 0"></textarea>
+                <textarea id="valuStack" rows="10" cols="50" disabled=disabled style="border: 1"></textarea>
             </td>
             <td>
-                <textarea id="exprStack" rows="10" cols="50" disabled=disabled style="border: 0"></textarea>
+                <textarea id="exprStack" rows="10" cols="50" disabled=disabled style="border: 1"></textarea>
             </td>
         </tr>
     </table>
+
+
 </body>
 </html>
