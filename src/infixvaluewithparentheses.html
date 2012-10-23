@@ -2,13 +2,12 @@
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>Infix Expression Evaluator</title>
+    <title>Infix Expression Evaluator with Parentheses</title>
 
     <script>
 
-        var OPERATORS=['+','-','/','*'];    //ignore the "(" as an operator
-        var OPERATOR_LEVELS={"*":1, "/":1, "+":2,"-":2};
-
+        var OPERATORS=['+','-','/','*','(',')'];    //ignore the "(" as an operator
+        var OPERATOR_LEVELS={")":0, "*":1, "/":1, "+":2,"-":2, "(" :3 };
 
         function infixToValue(inputExpression){
 
@@ -33,15 +32,19 @@
 
                 if (isValidOperator(eachChar)){
 
+                    if (!isLeftParen(eachChar) && isNumber(eachNumber)){
+                        valueStack.push(parseInt(eachNumber)); //push the till now accumulated number to the value stack
+                        writeValueStack(valueStack);
+                        eachNumber="";
+                    }
 
-                    valueStack.push(parseInt(eachNumber)); //push the till now accumulated number to the value stack
-                    writeValueStack(valueStack);
-                    eachNumber="";
-
-
-                    if (expressionStack.length==0){   //first item and not left parentheses
+                    if (expressionStack.length==0 || isLeftParen(eachChar)){   //first item and not left parentheses
                         expressionStack.push(eachChar);
                         writeExpressionStack(expressionStack);
+                    }
+                    else if (isRightParen(eachChar)){
+                        evaluateAndPushValueToStackUntilLeftParenthesis(valueStack, expressionStack);
+
                     }
                     //if the current operator has higher precedence than the first item in the stack, then it is fine.
                     //Just insert the incoming
@@ -102,6 +105,21 @@
 
         }
 
+        function evaluateAndPushValueToStackUntilLeftParenthesis(valueStack, expressionStack) {
+
+
+            var expStackLength=expressionStack.length;
+            for (var i=0; i<expStackLength;i++){
+                if (isLeftParen(expressionStack[expressionStack.length-1])){ //if the left parenthesis has been reached, then pop it up and exit
+                    expressionStack.pop();
+                    break;
+                }
+
+                evaluateAndPushValueToValueStack(valueStack,expressionStack);
+            }
+
+        }
+
         function evaluate (firstOperand, secondOperand, operator) {
 
             var returnValue;
@@ -157,6 +175,19 @@
         }
 
 
+        function isRightParen(operator) {
+            if (operator==")") {
+                return true;
+            }
+            return false;
+        }
+
+        function isLeftParen(operator) {
+            if (operator=="("){
+                return true;
+            }
+            return false;
+        }
 
         function writeExpressionStack(expressionStack){
             var expreStack=document.getElementById("exprStack");
@@ -188,17 +219,17 @@
 </head>
 <body>
 
-    <h3>Infix expression evaluator </h3>
+    <h3>Infix expression evaluator with Parentheses</h3>
     <h4>Note : </h4>
     <ol>
-        <li>Parenthesis not supported</li>
+        <li>Parenthesis supported</li>
         <li>Spaces allowed</li>
-        <li>Floating numbers not supported</li>
+        <li>Floating numbers not supported by intent</li>
         <li>Supports only the 4 basic arithmetic operators (+-*/)</li>
-        <li>Please visit <a href="http://rerun.me/blog/2012/10/14/evaluating-infix-expression-in-groovy-more-than-a-digit">rerun.me</a> for the writeup</li>
+        <li>Please visit <a href="http://rerun.me/blog/2012/10/17/evaluating-infix-expression-with-parentheses-in-groovy-multiple-digits/">rerun.me</a> for the writeup</li>
 
     </ol>
-    Enter expression : <input type="text" size="100" id="inputText" style="width:300px; height:40px; font-size:18px;" value="9-5+5*0+3"/>
+    Enter expression : <input type="text" size="100" id="inputText" style="width:300px; height:40px; font-size:18px;" value="((9 - 5)*(3+6))*2+3"/>
     <input type="button" value="Evaluate" onclick="infixToValue(document.getElementById('inputText').value)"/>
 
     <br/>
